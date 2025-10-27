@@ -104,7 +104,7 @@ function App() {
     <hr />
     <div>
       <h3>List of all animals in the zoo:{animals}</h3>
-      <table border="1">
+      {/* <table border="1">
         <thead>
           <tr>
             <th>Animal ID</th>
@@ -115,7 +115,7 @@ function App() {
         <tbody>
           
         </tbody>
-      </table>
+      </table> */}
     </div>
     </>
   )

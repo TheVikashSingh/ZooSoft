@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+ frontend:
+  build: ./frontend
+  container_name: zoosoft-frontend
+  ports:
+   - "5173:5173"
+  depends_on:
+   - backend
+  networks:
+   - zoosoft-network
+
+ backend:
+  build: ./backend
+  container_name: zoosoft-backend
+  environment:
+   SPRING_DATASOURCE_URL: jdbc:postgresql://zoosoft-postgres:5432/zoosoft
+   SPRING_DATASOURCE_USERNAME: postgres
+   SPRING_DATASOURCE_PASSWORD: postgres
+  ports:
+   - "8080:8080"
+  depends_on:
+   - postgres
+  networks:
+   - zoosoft-network
+
+ postgres:
+  image: postgres:latest
+  container_name: zoosoft-postgres
+  environment:
+   POSTGRES_USER: postgres
+   POSTGRES_PASSWORD: postgres
+   POSTGRES_DB: zoosoft
+  ports:
+   - 5432:5432
+  networks:
+   - zoosoft-network
+  volumes:
+    - zoosoft-postgres-data:/var/lib/postgresql/data
+
+networks:
+ zoosoft-network:
+  driver: bridge
+
+volumes:
+ zoosoft-postgres-data: 
