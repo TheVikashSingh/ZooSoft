@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping
+@CrossOrigin("*")
 public class Controller {
 
     private final AnimalServiceImpl animalService;
